@@ -1,5 +1,34 @@
 @import '../../styles/mixins';
 
-.menu {
+.header {
    background-color: $color1;
+   color: $color2;
+
+   .btnMobile {
+      display: none;
+   }
+
+   .menu {
+      background-color: $opac-color1;
+   }
+}
+
+@media (max-width: 600px) {
+   .header {
+      .btnMobile {
+         display: flex;
+      }
+
+      .menu {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         justify-content: center;
+
+         .link {
+            font-size: 10vw;
+         }
+      }
+   }
 }
