@@ -4,30 +4,74 @@
    background-color: $color1;
    color: $color2;
 
-   .btnMobile {
-      display: none;
-   }
+   .nav {
+      .btnMobile {
+         display: none;
+      }
 
-   .menu {
-      background-color: $opac-color1;
+      .menu {
+         background-color: $opac-color1;
+      }
    }
 }
 
 @media (max-width: 600px) {
    .header {
-      .btnMobile {
-         display: flex;
+      .nav {
+         .btnMobile {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+
+            .hamburger {
+               position: relative;
+               display: block;
+               width: 20px;
+               border-top: 2px solid;
+
+               &::after,
+               &::before {
+                  content: '';
+                  position: relative;
+                  display: block;
+                  width: 20px;
+                  height: 2px;
+                  background-color: currentColor;
+                  margin-top: 5px;
+                  transition: 0.3s;
+               }
+            }
+         }
+
+         .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+
+            .link {
+               font-size: 10vw;
+            }
+         }
       }
 
-      .menu {
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         text-align: center;
-         justify-content: center;
+      .nav.active {
+         .btnMobile {
+            .hamburger {
+               border-top-color: transparent;
+               z-index: 400;
 
-         .link {
-            font-size: 10vw;
+               &::before {
+                  transform: rotate(135deg);
+               }
+               &::after {
+                  transform: rotate(-135deg);
+                  top: -7px;
+               }
+            }
          }
       }
    }
