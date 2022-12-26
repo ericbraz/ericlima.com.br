@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useLanguages } from '../../pages/redux/features/language/languageSlice'
 
 /* 
- * The following content was added only to test
+ * The following code was added only to test
  * if the content of the page is changing after
  * the value of the Redux state changed.
  */
