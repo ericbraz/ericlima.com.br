@@ -1,18 +1,14 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, Fragment } from 'react'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import styles from './TopMenu.module.scss'
 import { US, BR, FR } from 'country-flag-icons/react/3x2'
-
-type Languages = 'en-us' | 'pt-br' | 'fr-fr'
-
-interface TopMenu {
-   name: string
-   tag: JSX.Element
-   language: Languages
-   menu: string[]
-}
+import { Languages, TopMenu } from '../../interfaces/languagesType'
+import { useDispatch } from 'react-redux'
+import { changeLang } from '../../redux/features/language/languageSlice'
 
 function TopMenu() {
+   const dispatch = useDispatch()
+
    // To open the menu when in mobile screen
    const [toggleMenu, setToggleMenu] = useState(true)
    const [toggleFlag, setToggleFlag] = useState(true)
@@ -22,16 +18,16 @@ function TopMenu() {
    const topMenu: TopMenu[] = useMemo(
       () => [
          {
-            name: 'English',
-            tag: <US title='English' />,
-            language: 'en-us',
-            menu: ['Portfolio', 'Contact'],
-         },
-         {
             name: 'Português',
             tag: <BR title='Português' />,
             language: 'pt-br',
             menu: ['Portfólio', 'Contato'],
+         },
+         {
+            name: 'English',
+            tag: <US title='English' />,
+            language: 'en-us',
+            menu: ['Portfolio', 'Contact'],
          },
          {
             name: 'Français',
@@ -53,7 +49,10 @@ function TopMenu() {
                className={`${styles.flag} block w-10 cursor-pointer`}
                onClick={() => setToggleFlag(!toggleFlag)}
             >
-               {topMenu.map((item) => item.language === lang && item.tag)}
+               {topMenu.map(
+                  (item) =>
+                     item.language === lang && <Fragment key={item.name}>{item.tag}</Fragment>
+               )}
             </div>
             <nav className={`${styles.nav} ${!toggleMenu && styles.active}`}>
                <button
@@ -85,19 +84,20 @@ function TopMenu() {
                           }
                   }
                >
-                  {topMenu.map(
-                     (element) =>
-                        element.language === lang &&
-                        element.menu.map((item) => (
-                           <li key={item}>
-                              <a
-                                 className={`${styles.link} inline-block m-1 px-3 py-2 w-full rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
-                              >
-                                 {item}
-                              </a>
-                           </li>
-                        ))
-                  )}
+                  {topMenu.map((element) => (
+                     <Fragment key={element.name}>
+                        {element.language === lang &&
+                           element.menu.map((item) => (
+                              <li key={item}>
+                                 <a
+                                    className={`${styles.link} inline-block m-1 px-3 py-2 w-full rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
+                                 >
+                                    {item}
+                                 </a>
+                              </li>
+                           ))}
+                     </Fragment>
+                  ))}
                </ul>
                <ul
                   className={`${styles.menu} list-none z-20 hidden`}
@@ -126,6 +126,7 @@ function TopMenu() {
                            className={`${styles.link} block w-36 m-1 px-3 py-2 rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
                            onClick={() => {
                               setLang(element.language)
+                              dispatch(changeLang(element.language))
                               setToggleFlag(!toggleFlag)
                            }}
                         >
