@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Languages } from '../../../../interfaces/languagesType'
+import { Languages } from '../../../interfaces/languagesType'
 import { RootState } from '../../store/store'
 
 const initialState = {

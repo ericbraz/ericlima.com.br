@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useLanguages } from '../../pages/redux/features/language/languageSlice'
+import { useLanguages } from '../../redux/features/language/languageSlice'
 
 /* 
  * The following code was added only to test

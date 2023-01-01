@@ -4,7 +4,7 @@ import styles from './TopMenu.module.scss'
 import { US, BR, FR } from 'country-flag-icons/react/3x2'
 import { Languages, TopMenu } from '../../interfaces/languagesType'
 import { useDispatch } from 'react-redux'
-import { changeLang } from '../../pages/redux/features/language/languageSlice'
+import { changeLang } from '../../redux/features/language/languageSlice'
 
 function TopMenu() {
    const dispatch = useDispatch()
@@ -18,16 +18,16 @@ function TopMenu() {
    const topMenu: TopMenu[] = useMemo(
       () => [
          {
-            name: 'English',
-            tag: <US title='English' />,
-            language: 'en-us',
-            menu: ['Portfolio', 'Contact'],
-         },
-         {
             name: 'Português',
             tag: <BR title='Português' />,
             language: 'pt-br',
             menu: ['Portfólio', 'Contato'],
+         },
+         {
+            name: 'English',
+            tag: <US title='English' />,
+            language: 'en-us',
+            menu: ['Portfolio', 'Contact'],
          },
          {
             name: 'Français',
