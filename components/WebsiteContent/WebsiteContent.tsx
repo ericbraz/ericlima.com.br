@@ -1,16 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLanguages } from '../../redux/features/language/languageSlice'
-
-/* 
- * The following code was added only to test
- * if the content of the page is changing after
- * the value of the Redux state changed.
- */
+import styles from './WebsiteContent.module.scss'
 
 function WebsiteContent() {
    const language = useSelector(useLanguages)
 
+   /*
+    * The following code was added only to test
+    * if the content of the page is changing after
+    * the value of the Redux state changed.
+    */
    const buttonLangs = [
       { lang: 'en-us', text: 'Show Language' },
       { lang: 'pt-br', text: 'Exibir Língua' },
@@ -18,7 +18,7 @@ function WebsiteContent() {
    ]
 
    return (
-      <div className='h-96 flex justify-center items-center'>
+      <div className={`${styles.footer} 'h-96 flex justify-center items-center`}>
          {buttonLangs.map((button) => button.lang === language && button.text)}
       </div>
    )
