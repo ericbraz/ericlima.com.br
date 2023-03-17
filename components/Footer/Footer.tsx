@@ -11,8 +11,14 @@ function Footer() {
 
    const language = useSelector(useLanguages)
    const footerLangs = [
-      { lang: 'en-us', text: ['Info • ', 'Terms of Use • ', 'Privacy Policy'] },
-      { lang: 'pt-br', text: ['Info • ', 'Termos de Uso • ', 'Política de Privacidade'] },
+      {
+         lang: 'en-us',
+         text: ['Info • ', 'Terms of Use • ', 'Privacy Policy'],
+      },
+      {
+         lang: 'pt-br',
+         text: ['Info • ', 'Termos de Uso • ', 'Política de Privacidade'],
+      },
       {
          lang: 'fr-fr',
          text: ['Info • ', "Conditions d'Utilisation • ", 'Politique de Confidentialité'],
@@ -32,7 +38,9 @@ function Footer() {
             {footerLangs.map(
                (footlang) =>
                   footlang.lang === language && (
-                     <span className='hover:cursor-pointer'>{footlang.text}</span>
+                     <span key={footlang.lang} className='hover:cursor-pointer'>
+                        {footlang.text}
+                     </span>
                   )
             )}
          </div>
