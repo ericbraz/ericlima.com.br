@@ -2,9 +2,9 @@ import React, { useMemo, useState, Fragment } from 'react'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import styles from './TopMenu.module.scss'
 import { US, BR, FR } from 'country-flag-icons/react/3x2'
-import { Languages, TopMenu } from '../../interfaces/languagesType'
-import { useDispatch } from 'react-redux'
-import { changeLang } from '../../redux/features/language/languageSlice'
+import { TopMenu } from '../../interfaces/languagesType'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeLang, useLanguages } from '../../redux/features/language/languageSlice'
 
 function TopMenu() {
    const dispatch = useDispatch()
@@ -14,7 +14,7 @@ function TopMenu() {
    const [toggleFlag, setToggleFlag] = useState(true)
 
    // State that define the language in menu (eventually it shall be transported as a context)
-   const [lang, setLang] = useState<Languages>('pt-br')
+   const language = useSelector(useLanguages)
    const topMenu: TopMenu[] = useMemo(
       () => [
          {
@@ -51,7 +51,7 @@ function TopMenu() {
             >
                {topMenu.map(
                   (item) =>
-                     item.language === lang && <Fragment key={item.name}>{item.tag}</Fragment>
+                     item.language === language && <Fragment key={item.name}>{item.tag}</Fragment>
                )}
             </div>
             <nav className={`${styles.nav} ${!toggleMenu && styles.active}`}>
@@ -86,7 +86,7 @@ function TopMenu() {
                >
                   {topMenu.map((element) => (
                      <Fragment key={element.name}>
-                        {element.language === lang &&
+                        {element.language === language &&
                            element.menu.map((item) => (
                               <li key={item}>
                                  <a
@@ -125,7 +125,6 @@ function TopMenu() {
                         <a
                            className={`${styles.link} block w-36 m-1 px-3 py-2 rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
                            onClick={() => {
-                              setLang(element.language)
                               dispatch(changeLang(element.language))
                               setToggleFlag(!toggleFlag)
                            }}
