@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Languages } from '../../../interfaces/languagesType'
+import { DEFAULT_LANGUAGE } from '../../../utils/constants/constants'
 import { RootState } from '../../store/store'
 
 const initialState = {
-   lang: 'pt-br' as Languages, // count
+   lang: DEFAULT_LANGUAGE, // count
 }
 
 export const languageSlice = createSlice({

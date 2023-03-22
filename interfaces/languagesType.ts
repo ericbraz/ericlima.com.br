@@ -1,4 +1,4 @@
-export type Languages = 'en-us' | 'pt-br' | 'fr-fr'
+export type Languages = 'en' | 'pt' | 'fr'
 
 export interface TopMenu {
    name: string

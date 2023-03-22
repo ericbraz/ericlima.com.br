@@ -12,15 +12,15 @@ function Footer() {
    const language = useSelector(useLanguages)
    const footerLangs = [
       {
-         lang: 'en-us',
+         lang: 'en',
          text: ['Info • ', 'Terms of Use • ', 'Privacy Policy'],
       },
       {
-         lang: 'pt-br',
+         lang: 'pt',
          text: ['Info • ', 'Termos de Uso • ', 'Política de Privacidade'],
       },
       {
-         lang: 'fr-fr',
+         lang: 'fr',
          text: ['Info • ', "Conditions d'Utilisation • ", 'Politique de Confidentialité'],
       },
    ]
