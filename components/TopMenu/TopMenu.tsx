@@ -20,19 +20,19 @@ function TopMenu() {
          {
             name: 'Português',
             tag: <BR title='Português' />,
-            language: 'pt-br',
+            language: 'pt',
             menu: ['Portfólio', 'Contato'],
          },
          {
             name: 'English',
             tag: <US title='English' />,
-            language: 'en-us',
+            language: 'en',
             menu: ['Portfolio', 'Contact'],
          },
          {
             name: 'Français',
             tag: <FR title='Français' />,
-            language: 'fr-fr',
+            language: 'fr',
             menu: ['Portefeuille', 'Contact'],
          },
       ],

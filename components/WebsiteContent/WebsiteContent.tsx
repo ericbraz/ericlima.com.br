@@ -12,9 +12,9 @@ function WebsiteContent() {
     * the value of the Redux state changed.
     */
    const buttonLangs = [
-      { lang: 'en-us', text: 'Show Language' },
-      { lang: 'pt-br', text: 'Exibir Língua' },
-      { lang: 'fr-fr', text: 'Afficher la Langue' },
+      { lang: 'en', text: 'Show Language' },
+      { lang: 'pt', text: 'Exibir Língua' },
+      { lang: 'fr', text: 'Afficher la Langue' },
    ]
 
    return (
