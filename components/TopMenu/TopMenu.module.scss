@@ -1,8 +1,35 @@
 @import '../../styles/mixins';
 
+$transitionTime: 0.3s;
+$transitionBack: background $transitionTime linear;
+$transitionColor: color $transitionTime linear;
+
 .header {
-   background-color: $color1;
+   /* background-color: $color1; */
    color: $color2;
+
+   transition: $transitionBack;
+
+   .logo {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      transition: font-size 0.3s ease-in-out;
+   }
+   .logo:hover {
+      font-size: 1.5rem;
+   }
+
+   .flag {
+      svg {
+         width: 2.5rem;
+         transition: width 0.3s ease-in-out;
+      }
+   }
+   .flag:hover {
+      svg {
+         width: 3rem;
+      }
+   }
 
    .nav {
       .btnMobile {
@@ -10,12 +37,36 @@
       }
 
       .menu {
-         background-color: $opac-color1;
+         font-weight: 700;
+         transition: $transitionColor;
+      }
+      .menuVisible {
+         color: $color2;
+      }
+      .menuInvisible {
+         color: $color1;
       }
    }
 }
 
+.color1 {
+   color: $color1;
+   transition: $transitionColor;
+}
+.background1 {
+   background: $color1;
+   transition: $transitionBack;
+}
+
+.menuOptions {
+   flex-direction: row-reverse;
+}
+
 @media (max-width: 600px) {
+   .menuOptions {
+      flex-direction: row;
+   }
+
    .header {
       .nav {
          .btnMobile {
@@ -46,7 +97,6 @@
          }
 
          .menu {
-            display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -75,4 +125,34 @@
          }
       }
    }
+}
+
+/* Below are the classes related to changing components according to screenWidth */
+
+.basic_style {
+   background-color: $opac-color1;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   display: flex;
+   margin: 0px;
+   width: 100vw;
+   height: 100vh;
+}
+.expanded_style {
+   background-color: $opac-color1;
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   display: flex;
+   margin: 0px;
+   width: 100vw;
+   height: 100vh;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
 }
