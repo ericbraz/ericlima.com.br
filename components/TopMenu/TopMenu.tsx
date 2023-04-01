@@ -1,4 +1,4 @@
-import React, { useMemo, useState, Fragment } from 'react'
+import React, { useMemo, useState, Fragment, useEffect } from 'react'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import styles from './TopMenu.module.scss'
 import { US, BR, FR } from 'country-flag-icons/react/3x2'
@@ -13,6 +13,7 @@ function TopMenu() {
    const [toggleMenu, setToggleMenu] = useState(true)
    const [toggleFlag, setToggleFlag] = useState(true)
 
+   const classes = 'w-8'
    // State that define the language in menu (eventually it shall be transported as a context)
    const language = useSelector(useLanguages)
    const topMenu: TopMenu[] = useMemo(
@@ -20,18 +21,21 @@ function TopMenu() {
          {
             name: 'Português',
             tag: <BR title='Português' />,
+            tagSmall: <BR title='Português' className={`${classes}`} />,
             language: 'pt',
             menu: ['Portfólio', 'Contato'],
          },
          {
             name: 'English',
             tag: <US title='English' />,
+            tagSmall: <US title='English' className={`${classes}`} />,
             language: 'en',
             menu: ['Portfolio', 'Contact'],
          },
          {
             name: 'Français',
             tag: <FR title='Français' />,
+            tagSmall: <FR title='Français' className={`${classes}`} />,
             language: 'fr',
             menu: ['Portefeuille', 'Contact'],
          },
@@ -41,54 +45,73 @@ function TopMenu() {
 
    const screenWidth = useWindowDimensions().width
 
+   /* Navbar background color change */
+   const [navbar, setNavbar] = useState(false)
+   const changeMenuBackground = () => {
+      if (window.scrollY >= 100) {
+         setNavbar(true)
+      } else {
+         setNavbar(false)
+      }
+   }
+
+   useEffect(() => {
+      window.addEventListener('scroll', changeMenuBackground)
+   }, [])
+
    return (
-      <header className={`${styles.header} flex items-center justify-between px-4 h-20`}>
-         <a className='text-xl font-semibold'>Logo</a>
+      <header
+         className={`${styles.header} fixed flex items-center justify-between px-4 w-full h-20
+         ${navbar ? styles.background1 : ''}`}
+      >
+         <a
+            className={`${styles.logo} text-xl font-semibold ${
+               navbar ? 'white' : styles.color1
+            } cursor-pointer`}
+         >
+            Logo
+         </a>
          <div className={`${styles.menuOptions} flex items-center`}>
             <div
-               className={`${styles.flag} block w-10 cursor-pointer`}
+               className={`${styles.flag} flex items-center justify-center w-12 cursor-pointer`}
                onClick={() => setToggleFlag(!toggleFlag)}
             >
                {topMenu.map(
                   (item) =>
-                     item.language === language && <Fragment key={item.name}>{item.tag}</Fragment>
+                     item.language === language && (
+                        <Fragment key={item.name}>{item.tagSmall}</Fragment>
+                     )
                )}
             </div>
-            <nav className={`${styles.nav} ${!toggleMenu && styles.active}`}>
+            <nav className={`${styles.nav} ${!toggleMenu ? styles.active : ''}`}>
                <button
-                  className={`${styles.btnMobile}`}
+                  className={`${styles.btnMobile} ${screenWidth <= 600 ? 'block' : 'none'}`}
                   onClick={() => setToggleMenu(!toggleMenu)}
-                  style={screenWidth <= 600 ? { display: 'block' } : { display: 'none' }}
+                  /* style was removed and classes were implemented instead */
                >
-                  <span className={`${styles.hamburger}`}></span>
+                  <span
+                     className={`${styles.hamburger} ${toggleMenu && styles.color1}`}
+                     style={navbar ? (toggleMenu ? { color: 'white' } : {}) : {}}
+                  ></span>
                </button>
                <ul
-                  className={`${styles.menu} list-none z-20 hidden`}
-                  style={
+                  className={`${navbar ? styles.menuVisible : styles.menuInvisible} ${
+                     styles.menu
+                  } m-3 list-none z-20
+                  ${
                      screenWidth <= 600 && toggleMenu
-                        ? { display: 'none' }
+                        ? 'hidden'
                         : screenWidth <= 600
-                        ? {
-                             position: 'fixed',
-                             top: 0,
-                             right: 0,
-                             bottom: 0,
-                             left: 0,
-                             display: 'flex',
-                             margin: '0px',
-                             width: '100vw',
-                             height: '100vh',
-                          }
-                        : {
-                             display: 'flex',
-                          }
-                  }
+                        ? styles.basic_style
+                        : 'flex'
+                  }`}
+                  /* style was removed and classes were implemented instead */
                >
                   {topMenu.map((element) => (
                      <Fragment key={element.name}>
                         {element.language === language &&
                            element.menu.map((item) => (
-                              <li key={item}>
+                              <li key={item} className={!toggleMenu ? styles.menuVisible : ''}>
                                  <a
                                     className={`${styles.link} inline-block m-1 px-3 py-2 w-full rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
                                  >
@@ -100,25 +123,9 @@ function TopMenu() {
                   ))}
                </ul>
                <ul
-                  className={`${styles.menu} list-none z-20 hidden`}
-                  style={
-                     toggleFlag
-                        ? { display: 'none' }
-                        : {
-                             position: 'fixed',
-                             top: 0,
-                             right: 0,
-                             bottom: 0,
-                             left: 0,
-                             display: 'flex',
-                             flexDirection: 'column',
-                             alignItems: 'center',
-                             justifyContent: 'center',
-                             margin: '0px',
-                             width: '100vw',
-                             height: '100vh',
-                          }
-                  }
+                  className={`${styles.menu} list-none z-20
+                  ${toggleFlag ? 'hidden' : styles.expanded_style}`}
+                  /* style was removed and classes were implemented instead */
                >
                   {topMenu.map((element) => (
                      <li key={element.language}>
