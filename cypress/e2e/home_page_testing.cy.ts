@@ -1,0 +1,68 @@
+describe('Testing clickable element in Home Page with different screen sizes', () => {
+   context('Desktop testing', () => {
+      beforeEach('Desktop resolution', () => {
+         cy.visit('/')
+      })
+      it('Clicking all clickable elements in home page (desktop)', () => {
+         cy.getByData('logo').should('exist').and('have.text', 'Logo')
+
+         cy.getByData('instagram').should('exist')
+         cy.getByData('twitter').should('exist')
+         cy.getByData('linkedin').should('exist')
+         cy.getByData('github').should('exist')
+         cy.getByData('info').should('exist').and('have.text', 'Info • ')
+         cy.getByData('terms-of-use').should('exist').and('have.text', 'Terms of Use • ')
+         cy.getByData('privacy-police').should('exist').and('have.text', 'Privacy Policy')
+
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-fr').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portefeuille')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contact')
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-en').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portfolio')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contact')
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-pt').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portfólio')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contato')
+      })
+   })
+
+   context('Mobile testing', () => {
+      beforeEach('Mobile resolution', () => {
+         cy.viewport('iphone-xr')
+         cy.visit('/')
+      })
+      it('Clicking all clickable elements in home page (mobile)', () => {
+         cy.getByData('logo').should('exist').and('have.text', 'Logo')
+
+         cy.getByData('instagram').should('exist')
+         cy.getByData('twitter').should('exist')
+         cy.getByData('linkedin').should('exist')
+         cy.getByData('github').should('exist')
+         cy.getByData('info').should('exist').and('have.text', 'Info • ')
+         cy.getByData('terms-of-use').should('exist').and('have.text', 'Terms of Use • ')
+         cy.getByData('privacy-police').should('exist').and('have.text', 'Privacy Policy')
+
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-fr').click()
+         cy.getByData('menu-burger').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portefeuille')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contact')
+         cy.getByData('menu-burger').click()
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-en').click()
+         cy.getByData('menu-burger').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portfolio')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contact')
+         cy.getByData('menu-burger').click()
+         cy.getByData('^language-flag-').click()
+         cy.getByData('menu-flag-pt').click()
+         cy.getByData('menu-burger').click()
+         cy.getByData('menu-link-portfolio').should('exist').and('have.text', 'Portfólio')
+         cy.getByData('menu-link-contact').should('exist').and('have.text', 'Contato')
+         cy.getByData('menu-burger').click()
+      })
+   })
+})

@@ -7,10 +7,11 @@ interface Props {
    size?: number
    color?: string
    Icon: IconType
+   dataLabel?: string
 }
 
 function MyCircleComponent(props: Props) {
-   const { size = 45, color = colors.color1, Icon } = props
+   const { size = 45, color = colors.color1, Icon, dataLabel } = props
 
    const ratio = 0.6
    const divStyle = {
@@ -24,6 +25,7 @@ function MyCircleComponent(props: Props) {
          <div
             className={`${styles.circle} flex justify-center items-center hover:cursor-pointer`}
             style={divStyle}
+            data-label={dataLabel ? dataLabel : ''}
          >
             <Icon size={ratio * size} />
          </div>
