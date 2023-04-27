@@ -42,6 +42,9 @@ function TopMenu() {
       ],
       []
    )
+   const menuDataLabels = [...topMenu]
+      .find((element) => element.name === 'English')
+      ?.menu.map((el) => el.toLowerCase())
 
    const screenWidth = useWindowDimensions().width
 
@@ -63,11 +66,13 @@ function TopMenu() {
       <header
          className={`${styles.header} fixed flex items-center justify-between px-4 w-full h-20
          ${navbar ? styles.background1 : ''}`}
+         data-action='navigation'
       >
          <a
             className={`${styles.logo} text-xl font-semibold ${
                navbar ? 'white' : styles.color1
             } cursor-pointer`}
+            data-label='logo'
          >
             Logo
          </a>
@@ -75,6 +80,7 @@ function TopMenu() {
             <div
                className={`${styles.flag} flex items-center justify-center w-12 cursor-pointer`}
                onClick={() => setToggleFlag(!toggleFlag)}
+               data-label={`language-flag-${language}`}
             >
                {topMenu.map(
                   (item) =>
@@ -92,6 +98,7 @@ function TopMenu() {
                   <span
                      className={`${styles.hamburger} ${toggleMenu && styles.color1}`}
                      style={navbar ? (toggleMenu ? { color: 'white' } : {}) : {}}
+                     data-label='menu-burger'
                   ></span>
                </button>
                <ul
@@ -110,10 +117,13 @@ function TopMenu() {
                   {topMenu.map((element) => (
                      <Fragment key={element.name}>
                         {element.language === language &&
-                           element.menu.map((item) => (
+                           element.menu.map((item, idx) => (
                               <li key={item} className={!toggleMenu ? styles.menuVisible : ''}>
                                  <a
                                     className={`${styles.link} inline-block m-1 px-3 py-2 w-full rounded-lg hover:bg-gray-200 hover:text-black cursor-pointer no-underline`}
+                                    data-label={
+                                       menuDataLabels ? `menu-link-${menuDataLabels[idx]}` : ''
+                                    }
                                  >
                                     {item}
                                  </a>
@@ -135,6 +145,7 @@ function TopMenu() {
                               dispatch(changeLang(element.language))
                               setToggleFlag(!toggleFlag)
                            }}
+                           data-label={`menu-flag-${element.language}`}
                         >
                            {element.tag}
                         </a>
