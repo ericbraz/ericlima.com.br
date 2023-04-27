@@ -49,7 +49,9 @@ function Footer() {
                   footlang.lang === language && (
                      <span key={footlang.lang} className='hover:cursor-pointer'>
                         {footlang.text.map((text, idx) => (
-                           <span data-label={dataLabels[idx]}>{text}</span>
+                           <span key={dataLabels[idx]} data-label={dataLabels[idx]}>
+                              {text}
+                           </span>
                         ))}
                      </span>
                   )
