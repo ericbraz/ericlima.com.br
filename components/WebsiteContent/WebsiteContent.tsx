@@ -1,10 +1,9 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { useLanguages } from '../../redux/features/language/languageSlice'
 import styles from './WebsiteContent.module.scss'
+import useLanguage from '../../hooks/useLanguage'
 
 function WebsiteContent() {
-   const language = useSelector(useLanguages)
+   const { language } = useLanguage()
 
    /*
     * The following code was added only to test
