@@ -59,7 +59,7 @@ function Navbar(props: NavbarProps) {
 
    useEffect(() => {
       window.addEventListener('scroll', changeMenuBackground)
-   }, [])
+   }, [changeMenuBackground])
 
    return (
       <div className={`${styles.menuOptions} flex items-center${className ? ' ' + className : ''}`}>
