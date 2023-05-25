@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './Footer.module.scss'
 import { BsInstagram, BsTwitter, BsLinkedin, BsGithub } from 'react-icons/bs'
 import MyCircleComponent from './MyCircleComponent'
-import { useSelector } from 'react-redux'
-import { useLanguages } from '../../redux/features/language/languageSlice'
+import useLanguage from '../../hooks/useLanguage'
 
 interface FooterLanguages {
    lang: string
@@ -14,7 +13,7 @@ function Footer() {
    const margins = 'm-0 mx-6 text-center'
    const compSizes = 25
 
-   const language = useSelector(useLanguages)
+   const { language } = useLanguage()
    const footerLangs: FooterLanguages[] = [
       {
          lang: 'en',

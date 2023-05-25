@@ -1,6 +1,6 @@
 export type Languages = 'en' | 'pt' | 'fr'
 
-export interface TopMenu {
+export interface MenuObject {
    name: string
    tag: JSX.Element
    tagSmall: JSX.Element

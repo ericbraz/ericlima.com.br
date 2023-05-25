@@ -4,6 +4,8 @@ $transitionTime: 0.3s;
 $transitionBack: background $transitionTime linear;
 $transitionColor: color $transitionTime linear;
 
+$screenSize: var(--max-mobile-screen);
+
 .header {
    /* background-color: $color1; */
    color: $color2;
@@ -62,7 +64,7 @@ $transitionColor: color $transitionTime linear;
    flex-direction: row-reverse;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 550px) {
    .menuOptions {
       flex-direction: row;
    }
