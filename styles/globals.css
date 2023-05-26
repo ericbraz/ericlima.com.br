@@ -14,11 +14,13 @@ html,
 body {
    padding: 0;
    margin: 0;
-   font-family: Archivo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-      Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+   font-family: Archivo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+      Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
    font-family: 'Roboto Serif';
 }
 
@@ -59,11 +61,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
    html {
-      color-scheme: dark;
-   }
-   body {
-      color: white;
-      background: black;
+      color-scheme: light;
    }
 }
 
