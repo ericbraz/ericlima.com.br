@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400&family=Roboto+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
 :root {
    /*
     * Changes in this screen size variables
@@ -5,15 +7,45 @@
     * in hooks/useDifferentScreens.ts file
     */
    --max-mobile-screen: 550px; /* const smallScreen = 550 */
-   --max-tablet-screen: 940px; /* const largeScreen = 940 */
+   --max-tablet-screen: 840px; /* const largeScreen = 840 */
 }
 
 html,
 body {
    padding: 0;
    margin: 0;
-   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+   font-family: Archivo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
       Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h1, h2, h3 {
+   font-family: 'Roboto Serif';
+}
+
+.roboto-title {
+   font-family: 'Roboto Serif';
+}
+.roboto-title h2 {
+   position: relative;
+}
+.roboto-title h2::after,
+.roboto-title aside::before,
+.roboto-title aside::after {
+   content: '';
+   position: absolute;
+   background-color: black;
+   display: block;
+   top: 50%;
+   width: 100%;
+   height: 2px;
+   z-index: -2;
+}
+.roboto-title aside::before {
+   left: 0;
+}
+.roboto-title h2::after,
+.roboto-title aside::after {
+   right: 0;
 }
 
 a {
