@@ -5,7 +5,7 @@ export default function useDifferentScreens() {
 
    // Changes in this variables must match changes of CSS variables in styles/global.css file
    const smallScreen = 550 // --max-mobile-screen: 550px;
-   const largeScreen = 940 // --max-tablet-screen: 940px;
+   const largeScreen = 840 // --max-tablet-screen: 840px;
 
    const mobileScreen = screenWidth <= smallScreen
    const tabletScreen = screenWidth > smallScreen && screenWidth <= largeScreen
