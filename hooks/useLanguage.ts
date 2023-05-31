@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLang, useLanguages } from '../redux/features/language/languageSlice'
+import { changeLang, getLanguage } from '../redux/features/language/languageSlice'
 import { Languages } from '../interfaces/languagesType'
 
 export default function useLanguage() {
-   const language = useSelector(useLanguages)
+   const language = useSelector(getLanguage)
    const dispatch = useDispatch()
 
    const setLanguage = (newLanguage: Languages) => {

@@ -52,11 +52,11 @@ $screenSize: var(--max-mobile-screen);
 }
 
 .color1 {
-   color: $color1;
+   //color: $color1;
    transition: $transitionColor;
 }
 .background1 {
-   background: $color1;
+   background: $color6;
    transition: $transitionBack;
 }
 

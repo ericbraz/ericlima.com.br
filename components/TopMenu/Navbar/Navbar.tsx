@@ -3,6 +3,8 @@ import { US, BR, FR } from 'country-flag-icons/react/3x2'
 import { MenuObject } from '../../../interfaces/languagesType'
 import useLanguage from '../../../hooks/useLanguage'
 import useDifferentScreens from '../../../hooks/useDifferentScreens'
+import usePageMode from '../../../hooks/usePageMode'
+import ModeSwitch from '../ModeSwitch'
 
 interface NavbarProps {
    navbarStyle: boolean
@@ -15,6 +17,9 @@ interface NavbarProps {
 
 function Navbar(props: NavbarProps) {
    const { navbarStyle, styles, changeMenuBackground, className } = props
+
+   // Checking page mode state
+   const { lightMode } = usePageMode()
 
    // This section deals with changing the navbarStyle background-color after scrolling
    const { mobileScreen } = useDifferentScreens()
@@ -76,18 +81,26 @@ function Navbar(props: NavbarProps) {
          <nav className={`${styles.nav} ${!toggleMenu ? styles.active : ''}`}>
             <button
                className={`${styles.btnMobile} ${mobileScreen ? 'block' : 'none'}`}
+               style={(lightMode && !navbarStyle) ? { color: 'black' } : { color: 'white' }}
                onClick={() => setToggleMenu(!toggleMenu)}
             /* style was removed and classes were implemented instead */
             >
                <span
                   className={`${styles.hamburger} ${toggleMenu && styles.color1}`}
-                  style={navbarStyle ? (toggleMenu ? { color: 'white' } : {}) : {}}
+                  style={
+                     lightMode ?
+                        (navbarStyle ? (toggleMenu ? { color: 'white' } : {}) : {}) :
+                        { color: 'white' }
+                  }
                   data-label='menu-burger'
                ></span>
             </button>
             <ul
-               className={`${navbarStyle ? styles.menuVisible : styles.menuInvisible} ${styles.menu
-                  } m-3 list-none z-20
+               className={`${lightMode ?
+                  (navbarStyle ? styles.menuVisible : styles.menuInvisible) :
+                  styles.menuVisible
+                  } ${styles.menu}
+               relative m-3 list-none z-20
                   ${mobileScreen && toggleMenu
                      ? 'hidden'
                      : mobileScreen
@@ -113,6 +126,7 @@ function Navbar(props: NavbarProps) {
                         ))}
                   </Fragment>
                ))}
+               {mobileScreen && <li className='mt-5'><ModeSwitch navbarStyle={null} /></li>}
             </ul>
             <ul
                className={`${styles.menu} list-none z-20
