@@ -1,5 +1,5 @@
 import React from 'react'
-import BeforeFold from './BeforeFold'
+import HeroSection from './HeroSection'
 import StackSection from './StackSection'
 
 function WebsiteContent() {
@@ -11,7 +11,7 @@ function WebsiteContent() {
    return (
       <>
          <section id='presentation' className={`${topClasses} pt-24 pb-14`}>
-            <BeforeFold outerDivClasses={outerDivClasses} />
+            <HeroSection outerDivClasses={outerDivClasses} />
          </section>
          <section id="stack" className={classes}>
             <StackSection outerDivClasses={outerDivClasses} />

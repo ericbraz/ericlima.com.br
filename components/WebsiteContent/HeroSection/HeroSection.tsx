@@ -1,8 +1,11 @@
 import React from 'react'
 import CTAButton from '../../reusables/verse/CTAButton'
 import useLanguage from '../../../hooks/useLanguage'
+import usePageMode from '../../../hooks/usePageMode'
 
-function BeforeFold({ outerDivClasses }: { outerDivClasses: string }) {
+function HeroSection({ outerDivClasses }: { outerDivClasses: string }) {
+    const { pageMode } = usePageMode()
+
     const { language } = useLanguage()
     const beforeFoldContent = [
         {
@@ -37,13 +40,15 @@ function BeforeFold({ outerDivClasses }: { outerDivClasses: string }) {
                 <div className={`w-full`}>
                     <article className='roboto-title my-8 lg:w-[291px] 785:w-[232px] 550:w-[174px] 360:w-[291px] w-[232px]'>
                         <h2 className='relative lg:text-4xl 785:text-3xl 550:text-xl text-3xl'>
-                            <span className='bg-white inline-block relative lg:pr-3 pr-1 -z-[1]'>
+                            <span className={`${pageMode === 'light' ? 'bg-[var(--light-mode-bg)]' : 'bg-[var(--dark-mode-bg)]'}
+                            inline-block relative lg:pr-3 pr-1 z-[1]`}>
                                 {beforeFoldContent.find(content => content.lang === language)?.h2}
                             </span>
                         </h2>
                         <h1 className='lg:text-6xl 785:text-5xl 550:text-4xl 360:text-6xl text-5xl'>Eric Lima</h1>
                         <aside className='relative lg:text-2xl 785:text-xl 550:text-base text-xl text-center'>
-                            <span className='bg-white inline-block relative lg:px-3 px-1 -z-[1]'>
+                            <span className={`${pageMode === 'light' ? 'bg-[var(--light-mode-bg)]' : 'bg-[var(--dark-mode-bg)]'}
+                            inline-block relative lg:px-3 px-1 z-[1]`}>
                                 {beforeFoldContent.find(content => content.lang === language)?.aside}
                             </span>
                         </aside>
@@ -67,4 +72,4 @@ function BeforeFold({ outerDivClasses }: { outerDivClasses: string }) {
     )
 }
 
-export default BeforeFold
+export default HeroSection

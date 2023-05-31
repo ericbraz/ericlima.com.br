@@ -1,5 +1,4 @@
 .button {
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;
    -moz-transition-duration: 0.3s;
@@ -10,8 +9,25 @@
 .button:hover,
 .button:active,
 .button:focus {
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
    transform: scale(1.1);
    -webkit-transform: scale(1.1);
    -moz-transform: scale(1.1);
+}
+
+.lightMode {
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.lightMode:hover,
+.lightMode:active,
+.lightMode:focus {
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.darkMode {
+   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.darkMode:hover,
+.darkMode:active,
+.darkMode:focus {
+   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }

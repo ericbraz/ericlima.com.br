@@ -1,13 +1,18 @@
+import usePageMode from '../../../hooks/usePageMode'
 import styles from './Logo.module.scss'
 
-function Logo({ logoMode, className }: { logoMode: boolean, className?: string }) {
+function Logo({ logoStyle, className }: { logoStyle: boolean, className?: string }) {
+   const { pageMode } = usePageMode()
+
    const additionalClassName = 'flex items-center justify-center'
    const finalClassName = className ? additionalClassName + ' ' + className : additionalClassName
 
    return (
       <div className={finalClassName}>
          <a
-            className={`${styles.logo} text-xl font-semibold ${logoMode ? 'white' : styles.color1
+            className={`${styles.logo} text-xl font-semibold ${pageMode === 'light' ?
+               (logoStyle ? 'text-[var(--light-mode-light-text)]' : 'text-[var(--light-mode-text)]') :
+               'text-[var(--dark-mode-text)]'
                } cursor-pointer hover:text-2xl`}
             data-label='logo'
          >

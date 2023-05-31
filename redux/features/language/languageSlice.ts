@@ -19,6 +19,6 @@ export const languageSlice = createSlice({
 
 export default languageSlice.reducer
 export const { changeLang } = languageSlice.actions
-export const useLanguages = (state: RootState) => {
+export const getLanguage = (state: RootState) => {
    return state.language.lang
 }
